@@ -4,14 +4,14 @@
 #define BUTTON_DATA_MAX 12
 #define STICK_DATA_MAX 6
 
-void dbg_cmd_view(unsigned char btn[],signed int stk[]){
+void dbg_cmd_view(unsigned char btn[],float stk[]){
     int i;
     for(i = 0;i < BUTTON_DATA_MAX;i++){
-        printf("%3d:",btn[i]);
+        printf("(%d)",btn[i]);
     }
     printf("\n");
     for(i = 0;i < STICK_DATA_MAX;i++){
-        printf("%3d:",stk[i]);
+        printf("(%6.2f)",stk[i]);
     }
     printf("\n");
 }
@@ -23,7 +23,7 @@ int main(void)
     fd = open( "/dev/input/js0", O_RDONLY );
 
     unsigned char  ButtonData[BUTTON_DATA_MAX];
-    signed int     StickData[STICK_DATA_MAX];
+    float    StickData[STICK_DATA_MAX];
 
     for(;;){
         struct js_event  event;
